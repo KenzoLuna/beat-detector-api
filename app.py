@@ -6,7 +6,15 @@ import tempfile
 import os
 
 app = Flask(__name__)
-CORS(app)  # Allow requests from frontend
+
+# Configure CORS to allow all origins
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 @app.route('/')
 def home():
